@@ -1,8 +1,6 @@
 package com.kizadev.scanapps.di.component
 
 import android.app.Application
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.kizadev.scanapps.di.module.MainModule
 import dagger.BindsInstance
 import dagger.Component
@@ -17,9 +15,6 @@ interface AppComponent {
 
         @BindsInstance
         fun application(application: Application): Builder
-
-        @BindsInstance
-        fun dataStore(dataStore: DataStore<Preferences>): Builder
 
         fun build(): AppComponent
     }

@@ -1,8 +1,8 @@
 package com.kizadev.domain.repository
 
-import com.kizadev.domain.model.PhoneApps
+import com.kizadev.domain.model.Apps
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
-    fun getApps(): Flow<PhoneApps>
+    fun getApps(): Flow<Apps>
 }

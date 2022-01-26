@@ -1,6 +1,6 @@
 package com.kizadev.domain.usecase
 
-import com.kizadev.domain.model.PhoneApps
+import com.kizadev.domain.model.Apps
 import com.kizadev.domain.repository.AppRepository
 import com.kizadev.domain.wrapper.AppScanResult
 import com.kizadev.domain.wrapper.Error
@@ -16,8 +16,9 @@ class GetAppsUseCase @Inject constructor(
     private val repository: AppRepository
 ) {
 
-    fun execute(): Flow<AppScanResult<PhoneApps, Exception>> {
+    fun execute(): Flow<AppScanResult<Apps, Exception>> {
         return repository.getApps()
+            .cancellable()
             .map { phoneApps ->
                 if (phoneApps.appsList.isEmpty()) {
                     Success(phoneApps)

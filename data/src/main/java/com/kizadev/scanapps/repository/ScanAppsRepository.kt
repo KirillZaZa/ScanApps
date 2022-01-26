@@ -1,7 +1,7 @@
 package com.kizadev.scanapps.repository
 
 import com.kizadev.domain.model.AppSettings
-import com.kizadev.domain.model.PhoneApps
+import com.kizadev.domain.model.Apps
 import com.kizadev.domain.repository.AppRepository
 import com.kizadev.domain.repository.SettingsRepository
 import com.kizadev.scanapps.storage.AppStorage
@@ -17,7 +17,7 @@ class ScanAppsRepository @Inject constructor(
     private val prefStorage: PrefStorage
 ) : AppRepository, SettingsRepository {
 
-    override fun getApps(): Flow<PhoneApps> {
+    override fun getApps(): Flow<Apps> {
         return appStorage.getApps()
     }
 

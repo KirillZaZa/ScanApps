@@ -1,9 +1,9 @@
 package com.kizadev.scanapps.storage
 
+import android.content.Context
 import android.util.Log
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.kizadev.domain.model.AppSettings
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -13,10 +13,16 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
+private const val PREFS_NAME = "SETTINGS"
+private val PREF_TAG = PrefStorage::javaClass.name
+private val Context.dataStore by preferencesDataStore(name = PREFS_NAME)
+
 @Singleton
 class PrefStorage @Inject constructor(
-    internal val dataStore: DataStore<Preferences>
+    private val context: Context
 ) {
+
+    val dataStore = context.dataStore
 
     private val errorHandler = CoroutineExceptionHandler { _, th ->
         Log.e(PREF_TAG, "$th")
@@ -29,12 +35,12 @@ class PrefStorage @Inject constructor(
     val appSettings: StateFlow<AppSettings>
         get() {
             val isDark =
-                dataStore.data.map { it[booleanPreferencesKey(this::isDarkMode.name)] ?: false }
+                dataStore.data.map {
+                    it[booleanPreferencesKey(this::isDarkMode.name)] ?: false
+                }
 
             return isDark.map { dark -> AppSettings(dark) }
                 .distinctUntilChanged()
                 .stateIn(scope, SharingStarted.Eagerly, AppSettings(isDarkMode))
         }
 }
-
-private val PREF_TAG = PrefStorage::javaClass.name
