@@ -4,4 +4,8 @@
     <color name="dark">#2F3338</color>
     <color name="light_grey">#ECECEC</color>
     <color name="black">#34393F</color>
+    <color name="light_yellow">#FDF4C5</color>
+    <color name="orange">#EC9E6F</color>
+    <color name="dark_pink">#DC54E1</color>
+    <color name="purple">#956AE7</color>
 </resources>

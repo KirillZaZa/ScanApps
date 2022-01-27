@@ -10,6 +10,7 @@
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/ic_find_apps.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/ic_find_apps_dark.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/ic_moon.xml" value="0.15729166666666666" />
+        <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/ic_scan_shader.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/ic_sun.xml" value="0.15729166666666666" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/light_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/light_background_color.xml" value="0.26614583333333336" />
@@ -17,10 +18,12 @@
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/shape_circle_light.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/shape_switch_dark.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/drawable/shape_switch_light.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/fragment_details.xml" value="0.25" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/fragment_scan.xml" value="0.25" />
         <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/layout_switch_theme.xml" value="0.152" />
+        <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/scan_view.xml" value="0.264" />
+        <entry key="..\:/Users/kiril/AndroidStudioProjects/ScanApps/app/src/main/res/layout/switch_theme_view.xml" value="0.25" />
       </map>
     </option>
   </component>

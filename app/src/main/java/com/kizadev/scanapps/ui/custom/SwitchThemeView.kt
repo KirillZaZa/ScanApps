@@ -1,4 +1,4 @@
-package com.kizadev.scanapps.ui
+package com.kizadev.scanapps.ui.custom
 
 import android.content.Context
 import android.util.AttributeSet
