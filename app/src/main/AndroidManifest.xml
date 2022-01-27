@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ScanApps">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:launchMode="singleInstance"
             android:exported="true">
             <intent-filter>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ScanApps</string>
+    <string name="light_theme_name">daymode</string>
+    <string name="dark_theme_name">nightmode</string>
 </resources>
