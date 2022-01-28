@@ -3,5 +3,13 @@
     <string name="light_theme_name">daymode</string>
     <string name="dark_theme_name">nightmode</string>
     <string name="text_scan">scan</string>
-    <string name="text_scanning">scanning</string>
+    <string name="text_cancel">cancel</string>
+    <string name="app_name_example">AppName</string>
+    <string name="button_back">Back</string>
+    <string name="installation_date">Installation date:</string>
+    <string name="_05_12_2021">05.12.2021</string>
+    <string name="_30">30</string>
+    <string name="targetsdkversion">TargetSdkVersion:</string>
+    <string name="_256_49mb">256.49MB</string>
+    <string name="size">Size:</string>
 </resources>

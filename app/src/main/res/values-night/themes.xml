@@ -15,6 +15,11 @@
         <item name="burger_background">@drawable/shape_circle_dark</item>
         <item name="icon_theme">@drawable/ic_moon</item>
         <item name="theme_name">@string/dark_theme_name</item>
+        <item name="items_background">@drawable/dark_item_background</item>
+        <item name="details_background">@drawable/dark_details_background</item>
+        <item name="text_color">@color/white</item>
+        <item name="text_secondary_color">@color/grey</item>
+
     </style>
 
     <style name="MainTextStyle" parent="Theme.ScanApps">
@@ -26,8 +31,21 @@
 
     <style name="SecondaryTextStyle" parent="Theme.ScanApps">
         <item name="android:textColor">@color/white</item>
-        <item name="fontFamily">@font/manrope_medium</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
         <item name="android:textSize">17sp</item>
     </style>
+
+
+    <style name="ButtonStyle" parent="Theme.ScanApps">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/manrope_regular</item>
+    </style>
+
+    <style name="DetailsTextStyle" parent="Theme.ScanApps">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?attr/text_secondary_color</item>
+    </style>
+
+
 
 </resources>

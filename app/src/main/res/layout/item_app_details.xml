@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="164dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/items_background"
+    android:elevation="20dp"
+    android:id="@+id/item_app"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="164dp">
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="48dp"
+        tools:background="@drawable/ic_moon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/app_name"
+        android:layout_height="48dp"/>
+
+    <TextView
+        android:id="@+id/app_name"
+        style="@style/SecondaryTextStyle"
+        android:text="@string/app_name"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

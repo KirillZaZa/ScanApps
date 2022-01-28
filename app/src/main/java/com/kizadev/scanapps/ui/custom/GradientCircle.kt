@@ -25,6 +25,8 @@ class GradientCircle @JvmOverloads constructor(
     private val orange = ContextCompat.getColor(context, R.color.orange)
     private val pink = ContextCompat.getColor(context, R.color.dark_pink)
     private val purple = ContextCompat.getColor(context, R.color.purple)
+    private val black = ContextCompat.getColor(context, R.color.black)
+
     private val startX = 0f
     private val startY = 0f
     private var endX by Delegates.notNull<Float>()
@@ -52,7 +54,7 @@ class GradientCircle @JvmOverloads constructor(
         isAntiAlias = true
         style = Paint.Style.STROKE
         strokeWidth = 10f
-        setShadowLayer(20f, -5f, -5f, ContextCompat.getColor(context, R.color.black))
+        setShadowLayer(20f, -5f, -5f, black)
     }
 
     private fun createCircleShader() = LinearGradient(
@@ -80,10 +82,8 @@ class GradientCircle @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         canvas ?: return
         drawCircle(canvas = canvas)
-
         drawShadow(canvas = canvas)
-
-        drawBorder(canvas = canvas)
+        drawBorderWithShadow(canvas = canvas)
     }
 
     private fun drawCircle(canvas: Canvas) {
@@ -94,7 +94,7 @@ class GradientCircle @JvmOverloads constructor(
         canvas.drawCircle(circleCenterX, circleCenterY, circleRadius, paintShadow)
     }
 
-    private fun drawBorder(canvas: Canvas) {
+    private fun drawBorderWithShadow(canvas: Canvas) {
         canvas.drawCircle(circleCenterY, circleCenterY, circleRadius, paintBorderCircle)
     }
 
