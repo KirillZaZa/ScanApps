@@ -2,13 +2,16 @@ package com.kizadev.scanapps.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kizadev.scanapps.R
@@ -17,8 +20,12 @@ import com.kizadev.scanapps.databinding.FragmentScanBinding
 import com.kizadev.scanapps.presentation.adapters.AppsAdapter
 import com.kizadev.scanapps.presentation.adapters.ItemOffsetDecoration
 import com.kizadev.scanapps.presentation.viewmodel.MainViewModel
-import com.kizadev.scanapps.presentation.viewmodel.factory.ScanViewModelFactory
+import com.kizadev.scanapps.presentation.viewmodel.ScanEvent
+import com.kizadev.scanapps.presentation.viewmodel.factory.MainViewModelFactory
 import com.kizadev.scanapps.presentation.viewmodel.state.ScanScreen
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
@@ -32,15 +39,11 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
     private val appsAdapter = AppsAdapter()
 
     @Inject
-    lateinit var viewModelFactory: ScanViewModelFactory.Factory
+    lateinit var viewModelFactory: MainViewModelFactory.Factory
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         context.appComponent.inject(this)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -55,10 +58,18 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
 
         lifecycleScope.launchWhenStarted {
             viewModel.screenState.collect {
-                Log.e("Fragment", "onCreateView: $it",)
-                renderData(it)
+                renderState(it)
             }
         }
+
+        viewModel.eventsFlow
+            .flowWithLifecycle(
+                lifecycle = viewLifecycleOwner.lifecycle,
+                minActiveState = Lifecycle.State.RESUMED
+            )
+            .onEach {
+                renderEvents(it)
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         return viewBinding.root
     }
@@ -73,28 +84,60 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         }
     }
 
-    private fun renderData(state: ScanScreen) {
-        when {
-            state.isScanning -> {
-                viewBinding.scanView.startAnimateScanning()
+    private fun renderEvents(event: ScanEvent) {
+        when (event) {
+            is ScanEvent.ShowFailure -> {
+                Toast.makeText(requireContext(), event.msg, Toast.LENGTH_SHORT).show()
             }
 
-            state.isScanFailed -> {
-                Toast.makeText(context, "${state.scanFailedMsg}", Toast.LENGTH_SHORT).show()
+            is ScanEvent.ShowApps -> {
+                showAppsWithAnimations()
             }
 
-            state.appList.isNotEmpty() -> {
-                appsAdapter.submitList(state.appList)
-                showAppList()
+            is ScanEvent.NavigateToDetails -> {
+                // TODO
             }
         }
     }
 
-    private fun showAppList() {
+
+    private fun showAppsWithAnimations() {
+        lifecycleScope.launch {
+            hideViews {
+                viewModel.handleListCanBeShown()
+            }
+        }
+    }
+
+    private fun hideViews(onEnd: () -> Unit) {
         with(viewBinding) {
-            rvApps.visibility = View.VISIBLE
             scanView.finishAnimateScanning()
-            appImage.visibility = View.GONE
+
+            ViewCompat.animate(appImage)
+                .setDuration(500)
+                .translationY(-1000f)
+                .setInterpolator(FastOutSlowInInterpolator())
+                .withEndAction {
+                    viewBinding.appImage.visibility = View.GONE
+                    onEnd.invoke()
+                }
+                .start()
+        }
+    }
+
+    private fun renderState(state: ScanScreen) {
+        with(viewBinding) {
+            if (state.isScanning) {
+                scanView.startAnimateScanning()
+            } else scanView.cancelAnimateScanning()
+
+            if (state.isListCanBeShown) {
+                appsAdapter.submitList(viewModel.screenState.value.appList)
+
+                appImage.visibility = View.GONE
+                scanView.visibility = View.GONE
+                rvApps.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -102,7 +145,9 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         v ?: return
         when (v.id) {
             viewBinding.scanView.id -> {
-                viewModel.handleScanning()
+                if (viewModel.screenState.value.isScanning) {
+                    viewModel.handleCancelScanning()
+                } else viewModel.handleScanning()
             }
         }
     }

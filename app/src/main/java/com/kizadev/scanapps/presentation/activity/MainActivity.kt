@@ -10,7 +10,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.kizadev.scanapps.app.appComponent
 import com.kizadev.scanapps.databinding.ActivityMainBinding
 import com.kizadev.scanapps.presentation.viewmodel.MainViewModel
-import com.kizadev.scanapps.presentation.viewmodel.factory.ScanViewModelFactory
+import com.kizadev.scanapps.presentation.viewmodel.factory.MainViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @Inject
-    lateinit var viewModelFactory: ScanViewModelFactory.Factory
+    lateinit var viewModelFactory: MainViewModelFactory.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

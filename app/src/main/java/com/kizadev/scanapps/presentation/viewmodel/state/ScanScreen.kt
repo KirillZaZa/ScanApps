@@ -4,7 +4,8 @@ import com.kizadev.domain.model.AppInfo
 
 data class ScanScreen(
     val isScanning: Boolean = false,
-    val isScanFailed: Boolean = false,
-    val scanFailedMsg: String? = null,
+    val isListCanBeShown: Boolean = false,
     val appList: List<AppInfo> = emptyList()
 )
+
+

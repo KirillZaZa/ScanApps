@@ -69,12 +69,14 @@ class ScanView @JvmOverloads constructor(
 
     fun finishAnimateScanning() {
         rotationAnimator.cancel()
-        hideView(this)
+        hideView(this@ScanView)
     }
 
     private fun hideView(view: View) {
         ViewCompat.animate(view)
-            .translationY(endTranslationY)
+            .scaleY(3f)
+            .scaleX(3f)
+            .alpha(0f)
             .setDuration(500)
             .setInterpolator(FastOutSlowInInterpolator())
             .withEndAction {

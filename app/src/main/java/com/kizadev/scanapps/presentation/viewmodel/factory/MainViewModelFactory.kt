@@ -10,7 +10,7 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import java.lang.IllegalArgumentException
 
-class ScanViewModelFactory @AssistedInject constructor(
+class MainViewModelFactory @AssistedInject constructor(
     private val getAppSettingsUseCase: GetAppSettingsUseCase,
     private val getAppsUseCase: GetAppsUseCase,
     private val updateAppSettingsUseCase: UpdateAppSettingsUseCase
@@ -25,6 +25,6 @@ class ScanViewModelFactory @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(): ScanViewModelFactory
+        fun create(): MainViewModelFactory
     }
 }

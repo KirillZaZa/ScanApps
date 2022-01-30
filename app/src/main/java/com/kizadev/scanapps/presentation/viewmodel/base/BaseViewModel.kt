@@ -23,12 +23,12 @@ abstract class BaseViewModel<T>(
     protected val baseContext = Dispatchers.Main + errorHandler
 
     protected val _screenState = MutableStateFlow(initState)
+
     val screenState = _screenState.asStateFlow()
 
     @UiThread
     protected inline fun updateState(transform: (T) -> T) {
-        val updatedState = transform.invoke(screenState.value)
-        _screenState.value = updatedState
+        _screenState.value = transform.invoke(screenState.value)
     }
 }
 
