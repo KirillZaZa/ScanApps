@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.animation.doOnStart
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
@@ -34,18 +35,23 @@ class SwitchThemeView @JvmOverloads constructor(
     private val startXIcon = 0f
     private var endXIcon by Delegates.notNull<Float>()
 
-    private var startXText = 0f
-    private var endXText by Delegates.notNull<Float>()
+    private var startXText = 1000f
+    private var endXTextNight by Delegates.notNull<Float>()
+    private var endXTextDay = 0f
+
+    init {
+        switchBinding.iconMode.visibility = View.INVISIBLE
+        switchBinding.textMode.visibility = View.INVISIBLE
+    }
 
     private lateinit var iconAnimator: ObjectAnimator
-    private lateinit var textAnimator: ObjectAnimator
+    private lateinit var nightTextAnimator: ObjectAnimator
+    private lateinit var dayTextAnimator: ObjectAnimator
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-
         endXIcon = ((width - iconMode.measuredWidth) - iconMode.marginStart * 2).toFloat()
-        endXText = (-textMode.measuredWidth / 2 + textMode.marginEnd * 2).toFloat()
-
+        endXTextNight = (-textMode.measuredWidth / 2 + textMode.marginEnd * 2).toFloat()
         initAnimators()
     }
 
@@ -56,32 +62,57 @@ class SwitchThemeView @JvmOverloads constructor(
             startXIcon,
             endXIcon
         ).apply {
-            duration = 500
+            duration = 100
             interpolator = FastOutSlowInInterpolator()
+
+            doOnStart {
+                textMode.visibility = View.VISIBLE
+                iconMode.visibility = View.VISIBLE
+            }
         }
 
-        textAnimator = ObjectAnimator.ofFloat(
+        nightTextAnimator = ObjectAnimator.ofFloat(
+            textMode,
+            View.TRANSLATION_X,
+            -startXText,
+            endXTextNight
+        ).apply {
+            duration = 100
+            interpolator = FastOutSlowInInterpolator()
+
+            doOnStart {
+                textMode.visibility = View.VISIBLE
+                iconMode.visibility = View.VISIBLE
+            }
+        }
+
+        dayTextAnimator = ObjectAnimator.ofFloat(
             textMode,
             View.TRANSLATION_X,
             startXText,
-            endXText
+            endXTextDay
         ).apply {
-            duration = 500
+            duration = 100
             interpolator = FastOutSlowInInterpolator()
+
+            doOnStart {
+                textMode.visibility = View.VISIBLE
+                iconMode.visibility = View.VISIBLE
+            }
         }
     }
 
-    fun switchToNightMode() {
-        textMode.text = nightThemeName
-        iconMode.setImageDrawable(moonDrawable)
-        iconAnimator.start()
-        textAnimator.start()
-    }
-
-    fun switchToDayMode() {
-        textMode.text = dayThemeName
-        iconMode.setImageDrawable(sunDrawable)
-        iconAnimator.reverse()
-        textAnimator.reverse()
+    fun switch(mode: Boolean) {
+        if (mode) {
+            textMode.text = nightThemeName
+            iconMode.setImageDrawable(moonDrawable)
+            iconAnimator.start()
+            nightTextAnimator.start()
+        } else {
+            textMode.text = dayThemeName
+            iconMode.setImageDrawable(sunDrawable)
+            iconAnimator.reverse()
+            dayTextAnimator.start()
+        }
     }
 }

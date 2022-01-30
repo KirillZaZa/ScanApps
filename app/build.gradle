@@ -32,7 +32,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 }
@@ -40,11 +40,18 @@ android {
 dependencies {
     def daggerVer = 2.39
 
+    //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    //navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
 
+    //lifecycle;coroutines
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+
     //modules
     implementation project(path: ':domain')
     implementation project(path: ':data')
@@ -54,10 +61,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVer"
 
     //viewBinding
-    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'
-
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
-
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

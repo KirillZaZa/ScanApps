@@ -25,8 +25,10 @@ class ScanView @JvmOverloads constructor(
         ScanViewBinding.inflate(LayoutInflater.from(context), this)
 
     private val gradientCircle = viewBinding.circle
+
     private val startRotationValue = 0f
     private val endRotationValue = 360f
+
     private var endTranslationY by Delegates.notNull<Float>()
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {

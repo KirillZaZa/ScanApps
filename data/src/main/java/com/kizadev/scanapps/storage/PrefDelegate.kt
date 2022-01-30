@@ -9,39 +9,47 @@ import kotlinx.coroutines.runBlocking
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class PrefDelegate<T>(private val defaultValue: T, private val customKey: String? = null) :
-    ReadWriteProperty<PrefStorage, T> {
+class PrefDelegate<T>(private val defaultValue: T, private val customKey: String? = null) {
 
-    private var storedValue: T? = null
+    operator fun provideDelegate(
+        thisRef: PrefStorage,
+        prop: KProperty<*>
+    ): ReadWriteProperty<PrefStorage, T> {
 
-    override fun getValue(thisRef: PrefStorage, property: KProperty<*>): T {
-        val key = createKey(customKey ?: property.name, defaultValue)
-        if (storedValue == null) {
-            thisRef.scope.launch {
-                val flow = thisRef.dataStore.data.map { prefs ->
-                    prefs[key] ?: defaultValue
-                }
-                storedValue = runBlocking(Dispatchers.IO) {
-                    flow.first()
+        val key = createKey(customKey ?: prop.name, defaultValue)
+        return object : ReadWriteProperty<PrefStorage, T> {
+
+            private var storedValue: T? = null
+
+            override fun setValue(thisRef: PrefStorage, property: KProperty<*>, value: T) {
+                storedValue = value
+
+                thisRef.scope.launch {
+                    thisRef.dataStore.edit { prefs ->
+                        prefs[key] = value
+                    }
                 }
             }
-        }
 
-        return storedValue!!
-    }
+            override fun getValue(thisRef: PrefStorage, property: KProperty<*>): T {
+                if (storedValue == null) {
+                    val flowValue = thisRef.dataStore.data
+                        .map { prefs ->
+                            prefs[key] ?: defaultValue
+                        }
+                    storedValue = runBlocking(Dispatchers.IO) {
+                        flowValue.first()
+                    }
+                }
 
-    override fun setValue(thisRef: PrefStorage, property: KProperty<*>, value: T) {
-        storedValue = value
-        val key = createKey(customKey ?: property.name, defaultValue)
-        thisRef.scope.launch {
-            thisRef.dataStore.edit { settings ->
-                settings[key] = defaultValue
+                return storedValue!!
             }
         }
     }
 
-    private fun createKey(name: String, defaultValue: T): Preferences.Key<T> =
-        when (defaultValue) {
+    @Suppress("UNCHECKED CAST")
+    fun createKey(name: String, value: T): Preferences.Key<T> =
+        when (value) {
             is Int -> intPreferencesKey(name)
             is Long -> longPreferencesKey(name)
             is Double -> doublePreferencesKey(name)

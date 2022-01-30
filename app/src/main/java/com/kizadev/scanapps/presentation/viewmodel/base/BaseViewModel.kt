@@ -1,6 +1,7 @@
 package com.kizadev.scanapps.presentation.viewmodel.base
 
 import android.util.Log
+import androidx.annotation.UiThread
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -21,12 +22,13 @@ abstract class BaseViewModel<T>(
 
     protected val baseContext = Dispatchers.Main + errorHandler
 
-    protected val _scanScreenState = MutableStateFlow(initState)
-    val scanScreenState = _scanScreenState.asStateFlow()
+    protected val _screenState = MutableStateFlow(initState)
+    val screenState = _screenState.asStateFlow()
 
+    @UiThread
     protected inline fun updateState(transform: (T) -> T) {
-        val updatedState = transform.invoke(scanScreenState.value)
-        _scanScreenState.value = updatedState
+        val updatedState = transform.invoke(screenState.value)
+        _screenState.value = updatedState
     }
 }
 

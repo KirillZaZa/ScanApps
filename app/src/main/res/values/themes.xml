@@ -12,6 +12,7 @@
         <item name="app_background_color">@drawable/light_background_color</item>
         <item name="app_logo">@drawable/ic_find_apps_light</item>
         <item name="switch_background">@drawable/shape_switch_light</item>
+        <item name="burger_icon">@drawable/ic_burger_light</item>
         <item name="burger_background">@drawable/shape_circle_light</item>
         <item name="icon_theme">@drawable/ic_sun</item>
         <item name="theme_name">@string/light_theme_name</item>
@@ -19,6 +20,7 @@
         <item name="details_background">@drawable/light_details_background</item>
         <item name="text_color">@color/dark</item>
         <item name="text_secondary_color">@color/dark</item>
+        <item name="button_ripple">@drawable/light_button_ripple</item>
     </style>
 
     <style name="MainTextStyle" parent="Theme.ScanApps">
@@ -41,8 +43,9 @@
     </style>
 
     <style name="DetailsTextStyle" parent="Theme.ScanApps">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">?attr/text_secondary_color</item>
+        <item name="android:fontFamily">@font/manrope_regular</item>
     </style>
 
 </resources>

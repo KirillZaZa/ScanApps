@@ -1,5 +1,6 @@
 package com.kizadev.scanapps.repository
 
+import android.content.Context
 import com.kizadev.domain.model.AppSettings
 import com.kizadev.domain.model.Apps
 import com.kizadev.domain.repository.AppRepository
@@ -13,7 +14,8 @@ import javax.inject.Singleton
 
 @Singleton
 class ScanAppsRepository @Inject constructor(
-    private val appStorage: AppStorage,
+    context: Context,
+    private val appStorage: AppStorage = AppStorage(context),
     private val prefStorage: PrefStorage
 ) : AppRepository, SettingsRepository {
 

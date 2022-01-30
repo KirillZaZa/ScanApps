@@ -4,10 +4,12 @@
         <attr name="app_background_color" format="reference"/>
         <attr name="app_logo" format="reference"/>
         <attr name="burger_background" format="reference"/>
+        <attr name="burger_icon" format="reference"/>
         <attr name="items_background" format="reference"/>
         <attr name="details_background" format="reference"/>
         <attr name="text_color" format="reference"/>
         <attr name="text_secondary_color" format="color"/>
+        <attr name="button_ripple" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="SwitchTheme">

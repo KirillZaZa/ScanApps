@@ -18,9 +18,8 @@ class GetAppsUseCase @Inject constructor(
 
     fun execute(): Flow<AppScanResult<Apps, Exception>> {
         return repository.getApps()
-            .cancellable()
             .map { phoneApps ->
-                if (phoneApps.appsList.isEmpty()) {
+                if (phoneApps.appsList.isNotEmpty()) {
                     Success(phoneApps)
                 } else Failure(NullPointerException("Apps not found"))
             }

@@ -2,20 +2,19 @@ package com.kizadev.scanapps.storage
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import com.kizadev.domain.model.AppInfo
 import com.kizadev.domain.model.Apps
 import com.kizadev.scanapps.ext.toInstallTime
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.File
 import java.text.DecimalFormat
-import javax.inject.Inject
 import kotlin.math.log10
 import kotlin.math.pow
 
-class AppStorage @Inject constructor(
+class AppStorage(
     private val context: Context
 ) {
 
@@ -25,23 +24,25 @@ class AppStorage @Inject constructor(
     private val packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
 
     fun getApps(): Flow<Apps> = flow {
-        delay(5000)
-        val apps = Apps(
-            packages.map { info ->
-                AppInfo(
-                    name = info.name,
-                    size = getAppSize(
-                        info.packageName
-                    ),
-                    targetSdkVersion = info.targetSdkVersion.toString(),
-                    packageName = info.packageName,
-                    installDate = getInstallDate(
-                        info.packageName
-                    )
+        val list = packages.map { info ->
+            AppInfo(
+                name = getAppName(info),
+                size = getAppSize(
+                    info.packageName
+                ),
+                targetSdkVersion = info.targetSdkVersion.toString(),
+                packageName = info.packageName,
+                installDate = getInstallDate(
+                    info.packageName
                 )
-            }
-        )
-        emit(apps)
+            )
+        }
+
+        emit(Apps(list))
+    }
+
+    private fun getAppName(info: ApplicationInfo): String {
+        return packageManager.getApplicationLabel(info).toString()
     }
 
     private fun getInstallDate(packageName: String): String {

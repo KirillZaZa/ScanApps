@@ -10,18 +10,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.*
-import javax.inject.Inject
-import javax.inject.Singleton
 
-private const val PREFS_NAME = "SETTINGS"
-private val PREF_TAG = PrefStorage::javaClass.name
-private val Context.dataStore by preferencesDataStore(name = PREFS_NAME)
-
-@Singleton
-class PrefStorage @Inject constructor(
-    private val context: Context
+class PrefStorage(
+    context: Context
 ) {
-
+    private val PREFS_NAME = "SETTINGS"
+    private val PREF_TAG = PrefStorage::javaClass.name
+    private val Context.dataStore by preferencesDataStore(name = PREFS_NAME)
     val dataStore = context.dataStore
 
     private val errorHandler = CoroutineExceptionHandler { _, th ->
