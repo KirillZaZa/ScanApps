@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickListener {
 
-    private val viewBinding by viewBinding { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewBinding by viewBinding(ActivityMainBinding::bind)
     private val viewModel: MainViewModel by viewModels {
         viewModelFactory.create()
     }
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickList
 
         appComponent.inject(this)
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenStarted {
             viewModel.themeState.collect {
                 renderTheme(it.isDarkMode)
             }

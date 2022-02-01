@@ -15,8 +15,6 @@ n
 >app/src/main/java/com/kizadev/scanapps/ui/custom/BurgerView.kt,a\1\a131b5420c405231898e4fa36200bd02c1d42fa8
 r
 Bapp/src/main/java/com/kizadev/scanapps/ui/custom/GradientCircle.kt,0\5\0534297a451735a86ed633376db2407a5c0aa14c
-l
-<app/src/main/java/com/kizadev/scanapps/ui/custom/ScanView.kt,0\3\03295b017f821b02e9c1cbb2db5ce834832b1fcb
 s
 Capp/src/main/java/com/kizadev/scanapps/ui/custom/SwitchThemeView.kt,b\0\b08fe0f335389d486a49becf6d3bc1a0fe5b7bf2
 x
@@ -55,9 +53,13 @@ j
 :app/src/main/java/com/kizadev/scanapps/utils/AppDetails.kt,e\7\e72ac4f4991698e3b4b3aeb86edaa51210af4311
 s
 Capp/src/main/java/com/kizadev/scanapps/di/component/AppComponent.kt,f\a\fa6a721e0b24141837f26b4477b971cc268bde2f
-|
-Lapp/src/main/java/com/kizadev/scanapps/presentation/activity/MainActivity.kt,c\c\cc25be898493aa0b4e770649bf6360ec278fe439
-~
-Napp/src/main/java/com/kizadev/scanapps/presentation/viewmodel/MainViewModel.kt,2\f\2fb378ddc38ecbf8537c2300e06753a4abe56490
 
 Qapp/src/main/java/com/kizadev/scanapps/presentation/viewmodel/state/ScanScreen.kt,7\b\7b96881fd541fc13c147831ee8d63ae46fc73d4c
+p
+@domain/src/main/java/com/kizadev/domain/wrapper/AppScanResult.kt,4\4\445d693c37f2c30635f24aea83d2571f0f8e856f
+e
+5app/src/main/java/com/kizadev/scanapps/ext/Context.kt,8\4\846a096a6a0490dc7c71e16a41f25e18a5d9d970
+‰
+Yapp/src/main/java/com/kizadev/scanapps/presentation/adapters/viewholders/AppViewHolder.kt,3\d\3d74581b59d9a8462c193976c3deedf50b951a13
+c
+3data/src/main/java/com/kizadev/scanapps/ext/Long.kt,e\2\e2dbf069cc02108073c42d3d5d2a08928070d86d

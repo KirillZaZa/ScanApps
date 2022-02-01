@@ -92,7 +92,7 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         viewModel.eventsFlow
             .flowWithLifecycle(
                 lifecycle = viewLifecycleOwner.lifecycle,
-                minActiveState = Lifecycle.State.RESUMED
+                minActiveState = Lifecycle.State.STARTED
             )
             .onEach {
                 renderEvents(it)
@@ -108,6 +108,7 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
 
     private fun setup() {
         with(viewBinding) {
+
             rvApps.apply {
                 layoutManager = GridLayoutManager(context, 2)
                 adapter = appsAdapter

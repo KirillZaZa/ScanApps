@@ -19,8 +19,7 @@
         android:theme="@style/Theme.ScanApps">
         <activity
             android:name=".presentation.activity.MainActivity"
-            android:exported="true"
-            android:launchMode="singleInstance">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
