@@ -63,3 +63,11 @@ e
 Yapp/src/main/java/com/kizadev/scanapps/presentation/adapters/viewholders/AppViewHolder.kt,3\d\3d74581b59d9a8462c193976c3deedf50b951a13
 c
 3data/src/main/java/com/kizadev/scanapps/ext/Long.kt,e\2\e2dbf069cc02108073c42d3d5d2a08928070d86d
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+~
+Napp/src/main/java/com/kizadev/scanapps/presentation/viewmodel/MainViewModel.kt,2\f\2fb378ddc38ecbf8537c2300e06753a4abe56490
+l
+<app/src/main/java/com/kizadev/scanapps/ui/custom/ScanView.kt,0\3\03295b017f821b02e9c1cbb2db5ce834832b1fcb
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

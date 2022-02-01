@@ -58,9 +58,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details), View.OnClickListene
         with(viewBinding) {
             root.transitionName =
                 requireContext().getString(R.string.transition_root, appDetails.size)
+
             val icon =
                 requireContext().packageManager.getApplicationIcon(appDetails.packageName)
-
             appIcon.setImageDrawable(icon)
             appIcon.transitionName =
                 requireContext().getString(R.string.transition_icon, appDetails.packageName)
@@ -70,7 +70,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details), View.OnClickListene
                 requireContext().getString(R.string.transition_text, appDetails.appName)
 
             appInstallationDate.text = appDetails.installationDate
+
             appSize.text = appDetails.size
+
             appTargetSdk.text = appDetails.targetSdk
         }
     }

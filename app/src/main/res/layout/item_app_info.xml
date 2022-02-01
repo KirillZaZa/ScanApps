@@ -20,21 +20,19 @@
     <TextView
         android:id="@+id/app_name"
         style="@style/SecondaryTextStyle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
         android:ellipsize="end"
-        android:ems="20"
-        android:gravity="center"
+        android:ems="50"
         android:maxLines="1"
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_icon"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toBottomOf="@id/app_icon"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
