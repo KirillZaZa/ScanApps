@@ -22,6 +22,7 @@ import androidx.transition.TransitionInflater
 import com.kizadev.scanapps.R
 import com.kizadev.scanapps.app.appComponent
 import com.kizadev.scanapps.databinding.FragmentScanBinding
+import com.kizadev.scanapps.ext.isDestinationsTheSame
 import com.kizadev.scanapps.presentation.adapters.AppsAdapter
 import com.kizadev.scanapps.presentation.adapters.decor.ItemOffsetDecoration
 import com.kizadev.scanapps.presentation.adapters.listeners.OnAppListener
@@ -44,6 +45,8 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
     }
 
     private val onAppListener = OnAppListener { appInfo, imageView, textView, root ->
+        if (isDestinationsTheSame(DetailsFragment::class.java)) return@OnAppListener
+
         val extras = FragmentNavigatorExtras(
             imageView to requireContext().getString(R.string.transition_icon, appInfo.packageName),
             textView to requireContext().getString(R.string.transition_text, appInfo.name),
@@ -75,7 +78,7 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = FragmentScanBinding.inflate(inflater)
+        viewBinding = FragmentScanBinding.inflate(inflater, container, false)
 
         sharedElementReturnTransition =
             TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)

@@ -15,8 +15,6 @@ n
 >app/src/main/java/com/kizadev/scanapps/ui/custom/BurgerView.kt,a\1\a131b5420c405231898e4fa36200bd02c1d42fa8
 r
 Bapp/src/main/java/com/kizadev/scanapps/ui/custom/GradientCircle.kt,0\5\0534297a451735a86ed633376db2407a5c0aa14c
-s
-Capp/src/main/java/com/kizadev/scanapps/ui/custom/SwitchThemeView.kt,b\0\b08fe0f335389d486a49becf6d3bc1a0fe5b7bf2
 x
 Hdata/src/main/java/com/kizadev/scanapps/repository/ScanAppsRepository.kt,9\7\97f161cd934df8101b089136fe124f0667a919af
 o
@@ -41,14 +39,10 @@ Adomain/src/main/java/com/kizadev/domain/usecase/GetAppsUseCase.kt,7\0\70e420c0
 Kdomain/src/main/java/com/kizadev/domain/usecase/UpdateAppSettingsUseCase.kt,f\c\fc7cffe2e421e7fc7134f537c2ae9971f9472ea1
 n
 >app/src/main/java/com/kizadev/scanapps/di/module/MainModule.kt,7\c\7c56457a1ba3c1400f0d07abfad6320be2b16b8e
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 Š
 Zapp/src/main/java/com/kizadev/scanapps/presentation/adapters/decor/ItemOffsetDecoration.kt,0\d\0d60b9a6b38848dab02efafaf7b423f4d8a07656
 {
 Kapp/src/main/java/com/kizadev/scanapps/presentation/adapters/AppsAdapter.kt,3\a\3a103ea96a3eb22dfcacd0ad3c6f3170c554bc69
-‡
-Wapp/src/main/java/com/kizadev/scanapps/presentation/adapters/listeners/OnAppListener.kt,3\0\308680c0d6b42717035725f0c69d25b8d312ae3b
 j
 :app/src/main/java/com/kizadev/scanapps/utils/AppDetails.kt,e\7\e72ac4f4991698e3b4b3aeb86edaa51210af4311
 s
@@ -59,8 +53,6 @@ p
 @domain/src/main/java/com/kizadev/domain/wrapper/AppScanResult.kt,4\4\445d693c37f2c30635f24aea83d2571f0f8e856f
 e
 5app/src/main/java/com/kizadev/scanapps/ext/Context.kt,8\4\846a096a6a0490dc7c71e16a41f25e18a5d9d970
-‰
-Yapp/src/main/java/com/kizadev/scanapps/presentation/adapters/viewholders/AppViewHolder.kt,3\d\3d74581b59d9a8462c193976c3deedf50b951a13
 c
 3data/src/main/java/com/kizadev/scanapps/ext/Long.kt,e\2\e2dbf069cc02108073c42d3d5d2a08928070d86d
 <

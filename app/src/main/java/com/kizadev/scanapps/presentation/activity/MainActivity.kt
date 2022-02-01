@@ -2,23 +2,23 @@ package com.kizadev.scanapps.presentation.activity
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.kizadev.scanapps.R
 import com.kizadev.scanapps.app.appComponent
 import com.kizadev.scanapps.databinding.ActivityMainBinding
 import com.kizadev.scanapps.presentation.viewmodel.MainViewModel
 import com.kizadev.scanapps.presentation.viewmodel.factory.MainViewModelFactory
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickListener {
 
-    private val viewBinding by viewBinding(ActivityMainBinding::bind)
+    private var _viewBinding: ActivityMainBinding? = null
+    private val viewBinding: ActivityMainBinding get() = _viewBinding!!
     private val viewModel: MainViewModel by viewModels {
         viewModelFactory.create()
     }
@@ -31,17 +31,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickList
 
         appComponent.inject(this)
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.themeState.collect {
-                renderTheme(it.isDarkMode)
-            }
-        }
+        // hardcoded
+        val root: ConstraintLayout = findViewById(R.id.activity_container)
+        _viewBinding = ActivityMainBinding.bind(root)
 
         setContentView(viewBinding.root)
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenResumed {
             viewModel.themeState.collect {
-                delay(10)
+                renderTheme(it.isDarkMode)
                 renderSwitchAnimation(it.isDarkMode)
             }
         }
@@ -62,7 +60,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickList
     }
 
     private fun renderSwitchAnimation(isDarkMode: Boolean) {
-        viewBinding.switchTheme.switch(mode = isDarkMode)
+        with(viewBinding) {
+            root.viewTreeObserver.addOnGlobalLayoutListener(object :
+                    ViewTreeObserver.OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        switchTheme.switch(mode = isDarkMode)
+                        root.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    }
+                })
+        }
     }
 
     override fun onClick(v: View?) {
@@ -72,5 +78,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickList
                 viewModel.handleAppTheme()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _viewBinding = null
     }
 }

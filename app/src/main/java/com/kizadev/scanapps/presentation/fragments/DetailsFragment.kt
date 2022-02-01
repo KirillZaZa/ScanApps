@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit
 
 class DetailsFragment : Fragment(R.layout.fragment_details), View.OnClickListener {
 
-    private lateinit var viewBinding: FragmentDetailsBinding
+    private var _viewBinding: FragmentDetailsBinding? = null
+    private val viewBinding: FragmentDetailsBinding get() = _viewBinding!!
     private lateinit var appDetails: AppDetails
 
     override fun onAttach(context: Context) {
@@ -36,7 +37,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details), View.OnClickListene
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = FragmentDetailsBinding.inflate(inflater)
+        _viewBinding = FragmentDetailsBinding.inflate(inflater, container, false)
 
         sharedElementEnterTransition =
             TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
@@ -84,5 +85,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details), View.OnClickListene
                 findNavController().popBackStack()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 }
