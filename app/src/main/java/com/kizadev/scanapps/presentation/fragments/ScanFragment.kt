@@ -7,22 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.ViewCompat
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionInflater
 import com.kizadev.scanapps.R
 import com.kizadev.scanapps.app.appComponent
 import com.kizadev.scanapps.databinding.FragmentScanBinding
 import com.kizadev.scanapps.presentation.adapters.AppsAdapter
-import com.kizadev.scanapps.presentation.adapters.ItemOffsetDecoration
+import com.kizadev.scanapps.presentation.adapters.decor.ItemOffsetDecoration
+import com.kizadev.scanapps.presentation.adapters.listeners.OnAppListener
 import com.kizadev.scanapps.presentation.viewmodel.MainViewModel
 import com.kizadev.scanapps.presentation.viewmodel.ScanEvent
 import com.kizadev.scanapps.presentation.viewmodel.factory.MainViewModelFactory
 import com.kizadev.scanapps.presentation.viewmodel.state.ScanScreen
+import com.kizadev.scanapps.utils.asAppDetails
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -36,7 +43,24 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         viewModelFactory.create()
     }
 
-    private val appsAdapter = AppsAdapter()
+    private val onAppListener = OnAppListener { appInfo, imageView, textView, root ->
+        val extras = FragmentNavigatorExtras(
+            imageView to requireContext().getString(R.string.transition_icon, appInfo.packageName),
+            textView to requireContext().getString(R.string.transition_text, appInfo.name),
+            root to requireContext().getString(R.string.transition_root, appInfo.size),
+        )
+
+        val directions: NavDirections = ScanFragmentDirections.actionScanFragmentToDetailsFragment(
+            appInfo.asAppDetails()
+        )
+
+        findNavController().navigate(
+            directions,
+            extras
+        )
+    }
+
+    private val appsAdapter = AppsAdapter(onAppListener)
 
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory.Factory
@@ -51,10 +75,13 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         viewBinding = FragmentScanBinding.inflate(inflater)
 
-        setup()
+        sharedElementReturnTransition =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+                .apply {
+                    interpolator = FastOutSlowInInterpolator()
+                }
 
         lifecycleScope.launchWhenStarted {
             viewModel.screenState.collect {
@@ -74,12 +101,22 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         return viewBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
+
     private fun setup() {
         with(viewBinding) {
-            rvApps.layoutManager = GridLayoutManager(context, 2)
-            rvApps.adapter = appsAdapter
-            rvApps.addItemDecoration(ItemOffsetDecoration())
-
+            rvApps.apply {
+                layoutManager = GridLayoutManager(context, 2)
+                adapter = appsAdapter
+                addItemDecoration(ItemOffsetDecoration())
+                postponeEnterTransition()
+                doOnPreDraw {
+                    startPostponedEnterTransition()
+                }
+            }
             scanView.setOnClickListener(this@ScanFragment)
         }
     }
@@ -93,13 +130,8 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
             is ScanEvent.ShowApps -> {
                 showAppsWithAnimations()
             }
-
-            is ScanEvent.NavigateToDetails -> {
-                // TODO
-            }
         }
     }
-
 
     private fun showAppsWithAnimations() {
         lifecycleScope.launch {

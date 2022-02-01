@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transition_icon" formatted="true">transition_icon %s</string>
+    <string name="transition_text" formatted="true">transition_name %s</string>
+    <string name="transition_root" formatted="true">transition_root %s</string>
+</resources>

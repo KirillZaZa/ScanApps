@@ -53,8 +53,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_container"
         android:layout_width="0dp"
-        android:name="com.kizadev.scanapps.presentation.fragments.ScanFragment"
-        app:layout_constraintTop_toBottomOf="@id/switch_theme"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

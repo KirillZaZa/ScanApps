@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.kizadev.scanapps.R
 import com.kizadev.scanapps.app.appComponent
 import com.kizadev.scanapps.databinding.ActivityMainBinding
 import com.kizadev.scanapps.presentation.viewmodel.MainViewModel
@@ -15,7 +16,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickListener {
 
     private val viewBinding by viewBinding { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel: MainViewModel by viewModels {

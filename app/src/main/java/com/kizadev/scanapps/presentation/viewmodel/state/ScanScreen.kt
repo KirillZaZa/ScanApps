@@ -7,5 +7,3 @@ data class ScanScreen(
     val isListCanBeShown: Boolean = false,
     val appList: List<AppInfo> = emptyList()
 )
-
-

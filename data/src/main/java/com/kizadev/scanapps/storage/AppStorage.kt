@@ -42,7 +42,10 @@ class AppStorage(
     }
 
     private fun getAppName(info: ApplicationInfo): String {
-        return packageManager.getApplicationLabel(info).toString()
+        val name = packageManager.getApplicationLabel(info).toString()
+        return if (name.contains("com")) {
+            name.substringAfterLast('.')
+        } else name
     }
 
     private fun getInstallDate(packageName: String): String {

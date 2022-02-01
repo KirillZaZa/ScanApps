@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val getAppSettingsUseCase: GetAppSettingsUseCase,
+    getAppSettingsUseCase: GetAppSettingsUseCase,
     private val getAppsUseCase: GetAppsUseCase,
     private val updateAppSettingsUseCase: UpdateAppSettingsUseCase
 ) : BaseViewModel<ScanScreen>(
@@ -78,7 +78,7 @@ class MainViewModel(
         }
     }
 
-    fun handleListCanBeShown(){
+    fun handleListCanBeShown() {
         updateState { it.copy(isListCanBeShown = true) }
     }
 }
@@ -88,6 +88,4 @@ sealed class ScanEvent {
     object ShowApps : ScanEvent()
 
     data class ShowFailure(val msg: String) : ScanEvent()
-
-    object NavigateToDetails : ScanEvent()
 }

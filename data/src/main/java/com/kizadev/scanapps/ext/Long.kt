@@ -6,7 +6,7 @@ import java.util.*
 fun Long?.toInstallTime(): String {
     this ?: return "Install time undefined"
     val date = Date(this)
-    val pattern = "MM.dd.yyyy"
+    val pattern = "dd.MM.yyyy"
     val dateFormat = SimpleDateFormat(pattern, Locale.getDefault())
 
     return dateFormat.format(date)

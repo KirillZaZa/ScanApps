@@ -9,18 +9,21 @@
         android:id="@+id/scanFragment"
         android:name="com.kizadev.scanapps.presentation.fragments.ScanFragment"
         android:label="fragment_scan"
-        tools:layout="@layout/fragment_scan" >
+        tools:layout="@layout/fragment_scan">
         <action
-            android:id="@+id/action_scanFragment_to_detailsFragment2"
-            app:destination="@id/detailsFragment2" />
+            android:id="@+id/action_scanFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailsFragment2"
+        android:id="@+id/detailsFragment"
         android:name="com.kizadev.scanapps.presentation.fragments.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <action
-            android:id="@+id/action_detailsFragment2_to_scanFragment"
+            android:id="@+id/action_detailsFragment_to_scanFragment"
             app:destination="@id/scanFragment" />
+        <argument
+            android:name="modelArg"
+            app:argType="com.kizadev.scanapps.utils.AppDetails" />
     </fragment>
 </navigation>

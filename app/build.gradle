@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
+
 }
 
 android {
@@ -39,7 +41,6 @@ android {
 
 dependencies {
     def daggerVer = 2.39
-
     //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 

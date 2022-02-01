@@ -39,7 +39,7 @@ class MainModule {
 
     @Provides
     @Singleton
-    fun provideAppStorage(context: Context): AppStorage{
+    fun provideAppStorage(context: Context): AppStorage {
         return AppStorage(context)
     }
 }

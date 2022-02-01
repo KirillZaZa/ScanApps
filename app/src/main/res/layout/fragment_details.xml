@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
     tools:context="com.kizadev.scanapps.presentation.fragments.DetailsFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_app"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="48dp"
+        android:layout_height="0dp"
+        android:nestedScrollingEnabled="true"
         android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginBottom="100dp"
         android:background="?attr/details_background"
         android:elevation="40dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/button_back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,8 +28,8 @@
             android:id="@+id/app_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="72dp"
-            android:background="@drawable/ic_moon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,9 +39,13 @@
             style="@style/SecondaryTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:ellipsize="end"
+            android:maxLength="20"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/manrope_regular"
-            android:text="@string/app_name"
+            android:gravity="center"
+            android:textAlignment="center"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +56,8 @@
             style="@style/DetailsTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/first_divider"
+            app:layout_constraintVertical_bias="0"
             android:layout_marginStart="24dp"
             android:layout_marginTop="64dp"
             android:text="@string/size"
@@ -63,15 +70,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toTopOf="@id/size"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/size"
-            android:text="@string/_256_49mb"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/size" />
 
         <View
             android:id="@+id/first_divider"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
+            app:layout_constraintBottom_toBottomOf="@id/targetSdk"
+            app:layout_constraintVertical_bias="0"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
             android:background="@color/grey"
@@ -83,11 +91,13 @@
             android:id="@+id/targetSdk"
             style="@style/DetailsTextStyle"
             android:layout_width="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/second_divider"
+            app:layout_constraintVertical_bias="0"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/first_divider"
-            app:layout_constraintStart_toStartOf="@id/size"
             android:layout_marginTop="16dp"
-            android:text="@string/targetsdkversion" />
+            android:text="@string/target_sdk_version"
+            app:layout_constraintStart_toStartOf="@id/size"
+            app:layout_constraintTop_toBottomOf="@id/first_divider" />
 
         <TextView
             android:id="@+id/app_targetSdk"
@@ -95,32 +105,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toTopOf="@id/targetSdk"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/targetSdk"
-            android:text="@string/_30"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/targetSdk" />
 
         <View
             android:id="@+id/second_divider"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            app:layout_constraintTop_toBottomOf="@id/targetSdk"
             android:layout_marginHorizontal="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/installationDate"
+            app:layout_constraintVertical_bias="0"
             android:layout_marginTop="16dp"
-            android:background="@color/grey" />
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/targetSdk" />
 
 
         <TextView
             android:id="@+id/installationDate"
             style="@style/DetailsTextStyle"
-            app:layout_constraintTop_toBottomOf="@id/second_divider"
-            app:layout_constraintStart_toStartOf="@id/targetSdk"
-            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/installation_date" />
+            android:layout_marginTop="16dp"
+            android:text="@string/installation_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintStart_toStartOf="@id/targetSdk"
+            app:layout_constraintTop_toBottomOf="@id/second_divider" />
 
         <TextView
             android:id="@+id/app_installationDate"
@@ -128,10 +141,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toTopOf="@id/installationDate"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/installationDate"
-            android:text="@string/_05_12_2021"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/installationDate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -142,15 +154,15 @@
         style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:elevation="40dp"
         android:layout_marginHorizontal="24dp"
         android:background="?attr/button_ripple"
+        android:elevation="40dp"
         android:text="@string/button_back"
         android:textColor="?attr/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="24dp"/>
+        app:layout_constraintTop_toBottomOf="@id/item_app" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
