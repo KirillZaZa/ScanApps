@@ -63,3 +63,13 @@ l
 <app/src/main/java/com/kizadev/scanapps/ui/custom/ScanView.kt,0\3\03295b017f821b02e9c1cbb2db5ce834832b1fcb
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+s
+Capp/src/main/java/com/kizadev/scanapps/ui/custom/SwitchThemeView.kt,b\0\b08fe0f335389d486a49becf6d3bc1a0fe5b7bf2
+‰
+Yapp/src/main/java/com/kizadev/scanapps/presentation/adapters/viewholders/AppViewHolder.kt,3\d\3d74581b59d9a8462c193976c3deedf50b951a13
+‡
+Wapp/src/main/java/com/kizadev/scanapps/presentation/adapters/listeners/OnAppListener.kt,3\0\308680c0d6b42717035725f0c69d25b8d312ae3b
+f
+6app/src/main/java/com/kizadev/scanapps/ext/Fragment.kt,d\f\dfb837ed25cab4a78e2a81123ea11b3bd59826e2
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164

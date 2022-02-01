@@ -17,8 +17,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickListener {
 
-    private var _viewBinding: ActivityMainBinding? = null
-    private val viewBinding: ActivityMainBinding get() = _viewBinding!!
+    private lateinit var viewBinding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels {
         viewModelFactory.create()
     }
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickList
 
         // hardcoded
         val root: ConstraintLayout = findViewById(R.id.activity_container)
-        _viewBinding = ActivityMainBinding.bind(root)
+        viewBinding = ActivityMainBinding.bind(root)
 
         setContentView(viewBinding.root)
 
@@ -78,10 +77,5 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), View.OnClickList
                 viewModel.handleAppTheme()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _viewBinding = null
     }
 }
