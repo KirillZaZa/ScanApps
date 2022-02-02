@@ -9,8 +9,6 @@ m
 =app/src/main/java/com/kizadev/scanapps/app/ScanApplication.kt,1\2\125cf6b28afa4d085db6332f80bd908ee4f15008
 É
 Sapp/src/main/java/com/kizadev/scanapps/presentation/viewmodel/base/BaseViewModel.kt,c\c\cc7621deb9cdeb4048fdfbe06cfc0bf13632d27c
-ç
-]app/src/main/java/com/kizadev/scanapps/presentation/viewmodel/factory/MainViewModelFactory.kt,0\3\03663aca0e12fc96cc978b01030d67a03441f4ac
 n
 >app/src/main/java/com/kizadev/scanapps/ui/custom/BurgerView.kt,a\1\a131b5420c405231898e4fa36200bd02c1d42fa8
 r
@@ -73,3 +71,5 @@ f
 6app/src/main/java/com/kizadev/scanapps/ext/Fragment.kt,d\f\dfb837ed25cab4a78e2a81123ea11b3bd59826e2
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+ç
+]app/src/main/java/com/kizadev/scanapps/presentation/viewmodel/factory/MainViewModelFactory.kt,0\3\03663aca0e12fc96cc978b01030d67a03441f4ac

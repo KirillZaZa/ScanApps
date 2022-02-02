@@ -16,7 +16,6 @@
         <item name="burger_background">@drawable/shape_circle_dark</item>
         <item name="icon_theme">@drawable/ic_moon</item>
         <item name="theme_name">@string/dark_theme_name</item>
-        <item name="items_background">@drawable/dark_item_background</item>
         <item name="details_background">@drawable/dark_details_background</item>
         <item name="text_color">@color/white</item>
         <item name="text_secondary_color">@color/grey</item>

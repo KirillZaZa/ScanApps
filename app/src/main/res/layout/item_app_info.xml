@@ -4,7 +4,7 @@
     android:id="@+id/item_app"
     android:layout_width="163dp"
     android:layout_height="147dp"
-    android:background="?attr/items_background"
+    android:background="?attr/button_ripple"
     android:elevation="20dp">
 
     <ImageView

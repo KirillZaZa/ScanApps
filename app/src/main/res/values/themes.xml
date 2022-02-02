@@ -16,8 +16,7 @@
         <item name="burger_background">@drawable/shape_circle_light</item>
         <item name="icon_theme">@drawable/ic_sun</item>
         <item name="theme_name">@string/light_theme_name</item>
-        <item name="items_background">@drawable/light_item_background</item>
-        <item name="details_background">@drawable/light_details_background</item>
+       <item name="details_background">@drawable/light_details_background</item>
         <item name="text_color">@color/dark</item>
         <item name="text_secondary_color">@color/dark</item>
         <item name="button_ripple">@drawable/light_button_ripple</item>

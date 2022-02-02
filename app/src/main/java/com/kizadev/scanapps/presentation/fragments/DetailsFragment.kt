@@ -40,11 +40,11 @@ class DetailsFragment : Fragment(R.layout.fragment_details), View.OnClickListene
         _viewBinding = FragmentDetailsBinding.inflate(inflater, container, false)
 
         sharedElementEnterTransition =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
-                .apply {
-                    interpolator = FastOutSlowInInterpolator()
-                }
-        postponeEnterTransition(200, TimeUnit.MILLISECONDS)
+            TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.move)
+                .setInterpolator(FastOutSlowInInterpolator())
+
+        postponeEnterTransition(100, TimeUnit.MILLISECONDS)
 
         return viewBinding.root
     }
