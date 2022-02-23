@@ -35,6 +35,7 @@ class MainViewModel(
             updateState {
                 it.copy(isScanning = true)
             }
+
             getAppsUseCase.execute()
                 .collect { scanResult ->
                     when (scanResult) {

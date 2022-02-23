@@ -41,6 +41,10 @@ android {
 
 dependencies {
     def daggerVer = 2.39
+
+    //adapter delegates
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.1'
+
     //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 

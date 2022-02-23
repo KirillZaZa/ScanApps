@@ -39,8 +39,6 @@ n
 >app/src/main/java/com/kizadev/scanapps/di/module/MainModule.kt,7\c\7c56457a1ba3c1400f0d07abfad6320be2b16b8e
 Š
 Zapp/src/main/java/com/kizadev/scanapps/presentation/adapters/decor/ItemOffsetDecoration.kt,0\d\0d60b9a6b38848dab02efafaf7b423f4d8a07656
-{
-Kapp/src/main/java/com/kizadev/scanapps/presentation/adapters/AppsAdapter.kt,3\a\3a103ea96a3eb22dfcacd0ad3c6f3170c554bc69
 j
 :app/src/main/java/com/kizadev/scanapps/utils/AppDetails.kt,e\7\e72ac4f4991698e3b4b3aeb86edaa51210af4311
 s
@@ -49,27 +47,17 @@ Capp/src/main/java/com/kizadev/scanapps/di/component/AppComponent.kt,f\a\fa6a72
 Qapp/src/main/java/com/kizadev/scanapps/presentation/viewmodel/state/ScanScreen.kt,7\b\7b96881fd541fc13c147831ee8d63ae46fc73d4c
 p
 @domain/src/main/java/com/kizadev/domain/wrapper/AppScanResult.kt,4\4\445d693c37f2c30635f24aea83d2571f0f8e856f
-e
-5app/src/main/java/com/kizadev/scanapps/ext/Context.kt,8\4\846a096a6a0490dc7c71e16a41f25e18a5d9d970
 c
 3data/src/main/java/com/kizadev/scanapps/ext/Long.kt,e\2\e2dbf069cc02108073c42d3d5d2a08928070d86d
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-~
-Napp/src/main/java/com/kizadev/scanapps/presentation/viewmodel/MainViewModel.kt,2\f\2fb378ddc38ecbf8537c2300e06753a4abe56490
 l
 <app/src/main/java/com/kizadev/scanapps/ui/custom/ScanView.kt,0\3\03295b017f821b02e9c1cbb2db5ce834832b1fcb
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 s
 Capp/src/main/java/com/kizadev/scanapps/ui/custom/SwitchThemeView.kt,b\0\b08fe0f335389d486a49becf6d3bc1a0fe5b7bf2
-‰
-Yapp/src/main/java/com/kizadev/scanapps/presentation/adapters/viewholders/AppViewHolder.kt,3\d\3d74581b59d9a8462c193976c3deedf50b951a13
-‡
-Wapp/src/main/java/com/kizadev/scanapps/presentation/adapters/listeners/OnAppListener.kt,3\0\308680c0d6b42717035725f0c69d25b8d312ae3b
-f
-6app/src/main/java/com/kizadev/scanapps/ext/Fragment.kt,d\f\dfb837ed25cab4a78e2a81123ea11b3bd59826e2
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 
 ]app/src/main/java/com/kizadev/scanapps/presentation/viewmodel/factory/MainViewModelFactory.kt,0\3\03663aca0e12fc96cc978b01030d67a03441f4ac
+e
+5app/src/main/java/com/kizadev/scanapps/ext/Context.kt,8\4\846a096a6a0490dc7c71e16a41f25e18a5d9d970
+€
+Papp/src/main/java/com/kizadev/scanapps/presentation/fragments/DetailsFragment.kt,a\f\afdb2ae7c3d18d60500937b91b30456e1bdeed58

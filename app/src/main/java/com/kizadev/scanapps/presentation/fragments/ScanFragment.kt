@@ -44,26 +44,34 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
         viewModelFactory.create()
     }
 
-    private val onAppListener = OnAppListener { appInfo, imageView, textView, root ->
-        if (isDestinationsTheSame(DetailsFragment::class.java)) return@OnAppListener
+    private val onAppListener =
+        OnAppListener { appInfo, imageView, textView, root ->
+            if (isDestinationsTheSame<DetailsFragment>()) return@OnAppListener
 
-        val extras = FragmentNavigatorExtras(
-            imageView to requireContext().getString(R.string.transition_icon, appInfo.packageName),
-            textView to requireContext().getString(R.string.transition_text, appInfo.name),
-            root to requireContext().getString(R.string.transition_root, appInfo.size),
-        )
+            val extras = FragmentNavigatorExtras(
+                imageView to requireContext().getString(
+                    R.string.transition_icon,
+                    appInfo.packageName
+                ),
+                textView to requireContext().getString(R.string.transition_text, appInfo.name),
+                root to requireContext().getString(R.string.transition_root, appInfo.size),
+            )
 
-        val directions: NavDirections = ScanFragmentDirections.actionScanFragmentToDetailsFragment(
-            appInfo.asAppDetails()
-        )
+            val directions: NavDirections =
+                ScanFragmentDirections.actionScanFragmentToDetailsFragment(
+                    appInfo.asAppDetails()
+                )
 
-        findNavController().navigate(
-            directions,
-            extras
-        )
-    }
+            findNavController().navigate(
+                directions,
+                extras
+            )
+        }
 
     private val appsAdapter = AppsAdapter(onAppListener)
+//    private val appsAdapter = ListDelegationAdapter(
+//        appAdapterDelegate(onAppListener)
+//    )
 
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory.Factory
@@ -168,7 +176,7 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
             } else scanView.cancelAnimateScanning()
 
             if (state.isListCanBeShown) {
-                appsAdapter.submitList(viewModel.screenState.value.appList)
+                appsAdapter.submitList(state.appList)
 
                 appImage.visibility = View.GONE
                 scanView.visibility = View.GONE
