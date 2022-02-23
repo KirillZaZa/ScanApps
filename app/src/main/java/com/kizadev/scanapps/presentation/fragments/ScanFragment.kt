@@ -171,9 +171,7 @@ class ScanFragment : Fragment(R.layout.fragment_scan), View.OnClickListener {
 
     private fun renderState(state: ScanScreen) {
         with(viewBinding) {
-            if (state.isScanning) {
-                scanView.startAnimateScanning()
-            } else scanView.cancelAnimateScanning()
+            scanView.animateScanning(state.isScanning)
 
             if (state.isListCanBeShown) {
                 appsAdapter.submitList(state.appList)

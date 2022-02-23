@@ -51,8 +51,6 @@ c
 3data/src/main/java/com/kizadev/scanapps/ext/Long.kt,e\2\e2dbf069cc02108073c42d3d5d2a08928070d86d
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-l
-<app/src/main/java/com/kizadev/scanapps/ui/custom/ScanView.kt,0\3\03295b017f821b02e9c1cbb2db5ce834832b1fcb
 s
 Capp/src/main/java/com/kizadev/scanapps/ui/custom/SwitchThemeView.kt,b\0\b08fe0f335389d486a49becf6d3bc1a0fe5b7bf2
 

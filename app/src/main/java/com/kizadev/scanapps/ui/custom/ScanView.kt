@@ -53,18 +53,18 @@ class ScanView @JvmOverloads constructor(
         }
     }
 
-    fun startAnimateScanning() {
-        rotationAnimator.start()
-        with(viewBinding) {
-            textScan.text = context.getString(R.string.text_cancel)
+    fun animateScanning(isScanning: Boolean) {
+        if (isScanning) {
+            rotationAnimator.start()
+            with(viewBinding) {
+                textScan.text = context.getString(R.string.text_cancel)
+            }
+        } else {
+            with(viewBinding) {
+                textScan.text = context.getString(R.string.text_scan)
+            }
+            rotationAnimator.cancel()
         }
-    }
-
-    fun cancelAnimateScanning() {
-        with(viewBinding) {
-            textScan.text = context.getString(R.string.text_scan)
-        }
-        rotationAnimator.cancel()
     }
 
     fun finishAnimateScanning() {
